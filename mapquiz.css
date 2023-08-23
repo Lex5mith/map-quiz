@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+* {
+  font-family: "Quicksand", sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image: linear-gradient(to right, #013194, #ffcc00);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center
+}
+
+.article{
+  height: 200px;
+  width: 800px;
+  padding: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  width: 80%;
+}
+
+.form{
+  height: 200px;
+  width: 800px;
+  padding: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  text-align: center;
+  font-size: 30px;
+
+}
+
+.winnerButton {
+  /* background-image: linear-gradient(to right, #013194, #ffcc00); */
+  background-color: #013194;
+  height: 200px;
+  width: 800px;
+  padding: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 42px;
+  text-align: center
+  width: 100%;
+  border-radius: 12px;
+  font-size: 32px;
+}
+
+.winnerButton:hover {
+  background-color: #ffcc00;
+  transition: 0.7s;
+}
+
+
+.info{
+  text-align: center
+  margin-top: auto
+
+}
+
+.Heading-image {
+  height: 200px;
+  width: 800px;
+  padding: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.category-image {
+  border-style: solid;
+  border-width: 10px;
+  border-color: #a5a58d;
+  border-radius: 50%;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 25px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+h1 {
+  color: #000000;
+  margin-left: 100px;
+  font-size: xx-large;
+  text-align: center;
+}
+
+h2 {
+  color: #000000;
+  margin-left: 100px;
+  font-size: x-large;
+  text-align: center;
+}
+
+h3 {
+  color: #000000;
+  margin-left: 100px;
+  font-size: large;
+}
+
+h4 {
+  color: #f0efeb;
+  margin-left: 100px;
+  font-size: medium;
+}
+li,
+ol {
+  color: #081c15;
+  font-size: small;
+}
+p {
+  color: #000000;
+  margin-left: 100px;
+  font-size: smaller;
+}
+
+a {
+  font-size: xx-small;
+}
+
+.valid {
+  background-color: green;
+}
+
+.invalid {
+  background-color: rgb(218, 141, 141);
+}
+
+.valid-country {
+  stroke: #000000;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
