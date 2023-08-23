@@ -1,35 +1,34 @@
 document;
 
-function countdown( elementName, minutes, seconds )
-{
-    var element, endTime, hours, mins, msLeft, time;
+function countdown(elementName, minutes, seconds) {
+  var element, endTime, hours, mins, msLeft, time;
 
-    function twoDigits( n )
-    {
-        return (n <= 9 ? "0" + n : n);
+  function twoDigits(n) {
+    return n <= 9 ? "0" + n : n;
+  }
+
+  function updateTimer() {
+    msLeft = endTime - +new Date();
+    if (msLeft < 1000) {
+      element.innerHTML = "Time is up!";
+    } else {
+      time = new Date(msLeft);
+      hours = time.getUTCHours();
+      mins = time.getUTCMinutes();
+      element.innerHTML =
+        (hours ? hours + ":" + twoDigits(mins) : mins) +
+        ":" +
+        twoDigits(time.getUTCSeconds());
+      setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
     }
+  }
 
-    function updateTimer()
-    {
-        msLeft = endTime - (+new Date);
-        if ( msLeft < 1000 ) {
-            element.innerHTML = "Time is up!";
-        } else {
-            time = new Date( msLeft );
-            hours = time.getUTCHours();
-            mins = time.getUTCMinutes();
-            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
-            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
-        }
-    }
-
-    element = document.getElementById( elementName );
-    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
-    updateTimer();
+  element = document.getElementById(elementName);
+  endTime = +new Date() + 1000 * (60 * minutes + seconds) + 500;
+  updateTimer();
 }
 
-countdown( "ten-countdown", 10, 0 );
-
+countdown("ten-countdown", 10, 0);
 
 const albaniaButton = document.getElementById("AL");
 
@@ -118,6 +117,53 @@ const georgiaButton = document.getElementById("GE");
 const userInput = document.getElementById("guessed-answer");
 const userInputError = document.getElementById("guessed-answer-error");
 const counterText = document.getElementById("counter");
+
+const userAnswersDictionary = {
+  Albania: false,
+  Austria: false,
+  Belgium: false,
+  Bulgaria: false,
+  "Bosnia and Herz": false,
+  Belarus: false,
+  Switzerland: false,
+  "Czech Rep": false,
+  Germany: false,
+  Denmark: false,
+  Estonia: false,
+  Finland: false,
+  "United Kingdom": false,
+  Greece: false,
+  Croatia: false,
+  Hungary: false,
+  Ireland: false,
+  Iceland: false,
+  Italy: false,
+  Lithuania: false,
+  Luxembourg: false,
+  Latvia: false,
+  Moldova: false,
+  Macedonia: false,
+  Montenegro: false,
+  Netherlands: false,
+  Norway: false,
+  Poland: false,
+  Portugal: false,
+  Romania: false,
+  Serbia: false,
+  Slovakia: false,
+  Slovenia: false,
+  Sweden: false,
+  Ukraine: false,
+  France: false,
+  Spain: false,
+  Turkey: false,
+  Cyprus: false,
+  Hungary: false,
+  Armenia: false,
+  Kosovo: false,
+  Georgia: false,
+};
+
 let counterNumber = 0;
 counterText.innerText = `Country Counter ${counterNumber}/43`;
 
@@ -131,9 +177,17 @@ userInput.addEventListener("keyup", (event) => {
     const countryButton = document.getElementById(selectedCountryCode);
     countryButton.classList.add("valid-country");
     countryButton.style.fill = countryCodeAndColour[selectedCountryCode];
-    counterNumber++;
-    counterText.innerText = `Country Counter ${counterNumber}/43`;
+    userAnswersDictionary[event.target.value] = true;
+    console.log(userAnswersDictionary);
+    const correctCountries = Object.values(userAnswersDictionary).filter(
+      (item) => item === true
+    ).length;
+    console.log("actual corrdct answers: ", correctCountries);
+    // console.log(correctCountries);
+    counterText.innerText = `Country Counter ${correctCountries}/43`;
     userInput.value = "";
+    userInputError.innerText = "";
+    event.target.classList.remove("invalid");
   } else {
     event.target.classList.add("invalid");
     event.target.classList.remove("valid");
@@ -217,7 +271,7 @@ const countryCodeAndColour = {
   NL: "#FF9b00",
   NO: "#BA0C2F",
   PL: "#dc143c",
-  PT: "#000000",
+  PT: "#FF0000",
   RO: "#CE1126",
   RS: "#ffffff",
   SK: "#0b4ea2",
@@ -237,17 +291,10 @@ const countryArray = Object.keys(countryCodeAndName);
 
 const answerForm = document.getElementById("winnerform");
 answerForm.addEventListener("submit", (event) => {
-    
-   
-    if (counterNumber !== 43) {
-
-       event.preventDefault();
-    }
+  if (counterNumber !== 43) {
+    event.preventDefault();
+  }
 });
-
-
-
-
 
 //   document.getElementsByClassName("answer-input");
 //   const inputs = [...getElementsByClassName("answer-input")];
